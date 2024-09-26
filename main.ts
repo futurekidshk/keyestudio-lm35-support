@@ -34,7 +34,7 @@ namespace keyestudioLM35 {
     //% block="temperature to serial"
     //% weight=98
     export function outputTemperatureToSerial(): void {
-        serial.writeValue("Temperature (°C)", getTemperature());
+        serial.writeValue("Temperature", getTemperature());
     }
 
     /**
