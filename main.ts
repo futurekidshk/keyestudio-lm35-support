@@ -12,7 +12,7 @@ namespace keyestudioLM35 {
     //% block="set pin S:$s"
     //% weight=100
     export function setPin(s: AnalogPin): void {
-        s_pin = s
+        s_pin = s;
     }
 
     /**
@@ -23,8 +23,26 @@ namespace keyestudioLM35 {
     //% weight=99
     export function getTemperature(): number {
         if (s_pin === null) {
-            return 0
+            return 0;
         }
-        return Math.idiv(300 * pins.analogReadPin(s_pin), 1023)
+        return Math.idiv(300 * pins.analogReadPin(s_pin), 1023);
+    }
+
+    /**
+     * Outputs the current temperature to serial.
+     */
+    //% block="temperature to serial"
+    //% weight=98
+    export function outputTemperatureToSerial(): void {
+        serial.writeValue("Temperature (°C)", getTemperature());
+    }
+
+    /**
+     * Check if the pin to read is defined.
+     */
+    //% block="check pin defined"
+    //% advanced=true
+    export function checkPinDefined(): boolean {
+        return s_pin !== null;
     }
 }
